@@ -1,0 +1,59 @@
+body, html{
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+.content{
+    height: 100%;
+    position: relative;
+
+    display:grid;
+    grid-template-rows: 1fr 8fr;
+}
+
+    /* Header Design */
+    .header{
+        background-color: #577D86;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 2px;
+        position: relative;
+
+        display:grid;
+        grid-template-columns: repeat(10, 1fr);
+        gap:15px;
+        align-items: center;
+    }
+        .headerTitle{
+            font-size: 28px;
+
+            grid-column: 2/4;
+        
+            display:flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .buttons{
+            background-color: #87CBB9;
+            height:50%;
+            font-size: 18px;
+            border:none;
+            border-radius: 15px;
+        }
+            .buttons:hover{
+                cursor: pointer;
+                background-color: #FFF9DE;
+            }
+            .buttons:active{
+                transform: scale(1.05);
+            }
+        
+            #new{
+                grid-column: 8/9;
+            }
+            #test{
+                grid-column: 9/10;
+            }
+    
+    /* Main Design */
+    .main{
+        background-color: #569DAA;
+    }
