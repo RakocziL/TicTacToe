@@ -20,6 +20,7 @@ const gameBoard = (()=>{
                 newGrid.className="fieldGrid";
                 newGrid.setAttribute("id", "field_"+idNum);
                 idNum++;
+                gridIcon.src ="";
 
                 /* Appending Elements */
                 gridContainer.appendChild(newGrid);
@@ -27,8 +28,14 @@ const gameBoard = (()=>{
 
                 /* Adding eventListeners */
                 newGrid.addEventListener("click", ()=>{
-                    gridIcon.src  ="icons/"+gameplay.playerTurn() +".svg";
-                    changeArray(i,x, gridIcon.src.slice(-5,-4));
+                    console.log(gridIcon.src)
+                    if(gridIcon.src == "file:///Users/leventerakoczi/repos/TicTacToe/index.html"){
+                        gridIcon.src="icons/"+gameplay.playerTurn() +".svg";
+                        changeArray(i,x, gridIcon.src.slice(-5,-4));
+                    }
+                    else{
+                        console.log("This grid already has an emblem");
+                    }
                 })
             }
         }
@@ -49,6 +56,7 @@ const gameBoard = (()=>{
     };
 })();
 
+/* Gameplay module */
 const gameplay = (()=>{
     let playerCounter = 0;
 
