@@ -29,6 +29,7 @@ const gameBoard = (()=>{
                     console.log(gridIcon.src)
                     if(gridIcon.src == "file:///Users/leventerakoczi/repos/TicTacToe/index.html"){
                         gridIcon.src="icons/"+gameplay.playerTurn() +".svg";
+                        gridIcon.style.display="block";
                         changeArray(i,x, gridIcon.src.slice(-5,-4));
                     }
                     else{
@@ -46,6 +47,18 @@ const gameBoard = (()=>{
                 myArray[i][y]="";
             }
         }
+        for(let i = 0; i < 3; i++){
+            for(let x = 0; x < 3; x++){
+                const gridItem =document.getElementById("field"+i+x);
+                const gridIMG = gridItem.querySelector("img");
+                gridIMG.src = "";
+                gridIMG.style.animation="";
+                gridIMG.style.display="none";
+            }
+        }
+        const endScreen = document.getElementById("endGameScreen");
+        endScreen.classList.add("disabled");
+
     }
     return {
         myArray,
@@ -107,16 +120,7 @@ const gameplay = (()=>{
     }
 })();
 
-/* Player Factory */
-const playerFactory = (type) => {
-    const playerStep = (a,b) =>{
-        gameBoard.changeArray(a,b,type);
-    }
-    return{type, playerStep};
-};
-
 gameBoard.createGrid();
-const playerX = playerFactory(true);
-const playerY = playerFactory(false);
-
+const newGameButton = document.getElementById("new");
+newGameButton.addEventListener("click", gameBoard.clearArray);
 

@@ -94,7 +94,13 @@ body, html{
         }
             .fieldGrid{
                 background-color: #569DAA;
+                border-style: none;
             }
+                .fieldGrid img{
+                    display:none;
+                    width:100%;
+                    height: 100%;
+                }
 
     .endGameScreen{
         position: relative;
