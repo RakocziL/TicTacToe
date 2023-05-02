@@ -4,6 +4,19 @@ body, html{
     margin: 0;
     font-family: 'Poppins', sans-serif;
 }
+
+@keyframes scale-animation {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
 .content{
     height: 100%;
     position: relative;

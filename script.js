@@ -8,7 +8,6 @@ const gameBoard = (()=>{
       ];
     const createGrid = ()=>{
         const gridContainer = document.getElementById("gameBoard");
-        let idNum = 1;
         for(let i = 0; i <myArray.length;i++){
             for(let x =0; x <myArray[i].length; x++){
 
@@ -18,8 +17,7 @@ const gameBoard = (()=>{
 
                 /* Adding attributes */
                 newGrid.className="fieldGrid";
-                newGrid.setAttribute("id", "field_"+idNum);
-                idNum++;
+                newGrid.setAttribute("id", "field"+i+x);
                 gridIcon.src ="";
 
                 /* Appending Elements */
@@ -36,6 +34,7 @@ const gameBoard = (()=>{
                     else{
                         console.log("This grid already has an emblem");
                     }
+                    gameplay.checkGameState();
                 })
             }
         }
@@ -64,10 +63,43 @@ const gameplay = (()=>{
         playerCounter+= 1;
         return (playerCounter-1) % 2== 0 ? "X":"O";
     }
+    const checkGameState = ()=>{
+        for(let i = 0; i < gameBoard.myArray.length; i++){
+            if(gameBoard.myArray[i][0]== gameBoard.myArray[i][1]&&gameBoard.myArray[i][1]== gameBoard.myArray[i][2]&&gameBoard.myArray[i][0]!=""){
+                gameEnd(gameBoard.myArray[i][0],"field"+i+"0","field"+i+"1","field"+i+"2");
+            }
+        }
+        for(let i = 0; i < 3; i++){
+            if(gameBoard.myArray[0][i]== gameBoard.myArray[1][i]&&gameBoard.myArray[1][i]== gameBoard.myArray[2][i]&&gameBoard.myArray[0][i]!=""){
+                gameEnd(gameBoard.myArray[0][i],"field"+"0"+i,"field"+"1"+i,"field"+"2"+i);
+            } 
+        }
+        if(gameBoard.myArray[0][0]== gameBoard.myArray[1][1]&&gameBoard.myArray[1][1]== gameBoard.myArray[2][2]&&gameBoard.myArray[0][0]!=""){
+            gameEnd(gameBoard.myArray[0][0],"field"+"00","field"+"11","field"+"22");
+        } 
+        if(gameBoard.myArray[0][2]== gameBoard.myArray[1][1]&&gameBoard.myArray[1][1]== gameBoard.myArray[2][0]&&gameBoard.myArray[0][2]!=""){
+            gameEnd(gameBoard.myArray[0][2],"field"+"02","field"+"11","field"+"20");
+        } 
+    }
+    const gameEnd = (a,idOne,idTwo,idThree)=>{
+        console.log(idOne);
+        const gridOne = document.getElementById(idOne);
+        const gridTwo = document.getElementById(idTwo);
+        const gridThree = document.getElementById(idThree);
 
+        const picOne  = gridOne.querySelector("img");
+        const picTwo = gridTwo.querySelector("img");
+        const picThree = gridThree.querySelector("img");
+
+        picOne.style.animation="scale-animation 1s ease-in-out infinite";
+        picTwo.style.animation="scale-animation 1s ease-in-out infinite";
+        picThree.style.animation="scale-animation 1s ease-in-out infinite";
+    }
     return{
         playerCounter,
         playerTurn,
+        checkGameState,
+        gameEnd,
     }
 })();
 
