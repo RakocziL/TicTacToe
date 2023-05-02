@@ -97,6 +97,7 @@ body, html{
             }
 
     .endGameScreen{
+        position: relative;
         grid-column: 1/2;
         grid-row: 2/3;
         backdrop-filter: blur(5px);
