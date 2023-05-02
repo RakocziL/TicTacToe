@@ -82,7 +82,7 @@ const gameplay = (()=>{
         } 
     }
     const gameEnd = (a,idOne,idTwo,idThree)=>{
-        console.log(idOne);
+        const endScreen = document.getElementById("endGameScreen");
         const gridOne = document.getElementById(idOne);
         const gridTwo = document.getElementById(idTwo);
         const gridThree = document.getElementById(idThree);
@@ -91,9 +91,13 @@ const gameplay = (()=>{
         const picTwo = gridTwo.querySelector("img");
         const picThree = gridThree.querySelector("img");
 
+        const elements = document.querySelectorAll(".fieldGrid");
+
         picOne.style.animation="scale-animation 1s ease-in-out infinite";
         picTwo.style.animation="scale-animation 1s ease-in-out infinite";
         picThree.style.animation="scale-animation 1s ease-in-out infinite";
+
+        endScreen.classList.remove("disabled");
     }
     return{
         playerCounter,
